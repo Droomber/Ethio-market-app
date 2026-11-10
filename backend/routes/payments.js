@@ -1,5 +1,5 @@
 const router=require("express").Router(),crypto=require("crypto"),Product=require("../models/Product"),Order=require("../models/Order"),{protect}=require("../middleware/auth");
-const base=()=>process.env.CHAPA_API_BASE||"https://api.chapa.global/v2";
+const base=()=>process.env.CHAPA_API_BASE||"https://api.chapa.co/v1";
 router.post("/chapa/initialize",protect,async(req,res,next)=>{try{
  if(!process.env.CHAPA_PRIVATE_KEY)return res.status(503).json({message:"Payment test key is not configured on the server."});
  const{items,shipping}=req.body;if(!Array.isArray(items)||!items.length||!shipping?.fullName||!shipping?.phone||!shipping?.address)return res.status(400).json({message:"Add products and complete shipping information."});
